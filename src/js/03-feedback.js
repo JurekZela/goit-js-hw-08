@@ -24,20 +24,19 @@ localStorage.setItem(STORAGE_KEY, JSON.stringify(feedbackObj));
 
 function onFormSubmit(e) {
     e.preventDefault();
-    
-    getFeedbackLocalStorage();
+
+    getConsolePrintStorage();
 
     e.currentTarget.reset();
     localStorage.removeItem(STORAGE_KEY);
 };
 
-function getFeedbackLocalStorage() {
+function getConsolePrintStorage() {
 
-        const savedFeedback = localStorage.getItem(STORAGE_KEY);
-        const parseMessage = JSON.parse(savedFeedback);
-
-        if (parseMessage) {
-            
-            console.log(parseMessage);
-        }
+    const savedFeedback = localStorage.getItem(STORAGE_KEY);
+    const parseMessage = JSON.parse(savedFeedback);
+    
+    if (parseMessage) {
+        console.log(parseMessage)
+    };
 };
