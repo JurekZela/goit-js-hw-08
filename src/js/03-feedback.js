@@ -4,21 +4,17 @@ const STORAGE_KEY = 'feedback-form-state';
 
 const refFeedBackForm = document.querySelector('.feedback-form');
 
-const refFeedBackEmail = document.querySelector('.feedback-form input');
-const refFeedBackMessage = document.querySelector('.feedback-form textarea');
+FormData = {};
 
 refFeedBackForm.addEventListener('input', throttle(onListenerFeedback, 500));
 refFeedBackForm.addEventListener('submit', onFormSubmit);
 
 function onListenerFeedback(e) {
-    e.preventDefault();
-    
-    const feedbackObj = {
-    email: refFeedBackEmail.value,
-    message: refFeedBackMessage.value,
-};
 
-localStorage.setItem(STORAGE_KEY, JSON.stringify(feedbackObj));
+    e.preventDefault();
+    FormData[e.target.name] = e.target.value;
+    
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(FormData));
 
 };
 
@@ -27,7 +23,7 @@ function onFormSubmit(e) {
 
     getConsolePrintStorage();
 
-    e.currentTarget.reset();
+    e.target.reset();
     localStorage.removeItem(STORAGE_KEY);
 };
 
@@ -35,7 +31,7 @@ function getConsolePrintStorage() {
 
     const savedFeedback = localStorage.getItem(STORAGE_KEY);
     const parseMessage = JSON.parse(savedFeedback);
-    
+
     if (parseMessage) {
         console.log(parseMessage)
     };
