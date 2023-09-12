@@ -46,9 +46,6 @@ function getSavedMessageForFeedback() {
     const savedFeedback = localStorage.getItem(STORAGE_KEY);
     const parseMessage = JSON.parse(savedFeedback);
     
-    if (parseMessage) {
         document.querySelector('input[name="email"]').value = parseMessage.email;
         document.querySelector('textarea[name="message"]').value = parseMessage.message;
-    };
 };
-
